@@ -1,0 +1,69 @@
+/* roompage/index.css */
+
+/* Updated navbar styles */
+.navbar {
+    background-color: #0078d4;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .navbar-brand {
+    font-family: "Segoe UI", sans-serif;
+    font-size: 24px;
+  }
+  
+  .navbar-dark .navbar-toggler-icon {
+    border-color: #fff;
+  }
+  
+  /* Updated board styles */
+  .board-styles {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 56px); /* Adjust for the navbar height */
+    overflow: hidden;
+  }
+  
+  /* Updated options container */
+  .options-container {
+    position: absolute;
+    bottom: 12.5px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    width: 60%;
+  }
+
+  .d-flex > .option {
+    margin-right: 10px; /* Reduce margin to bring icons closer */
+  }
+  
+  /* Updated option styles */
+  .option {
+    cursor: pointer;
+    padding: 10px; /* Increase padding for slightly bigger icons */
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+    background-color: #fff;
+    color: #0078d4;
+    font-size: 18px; /* Increase font size for slightly bigger icons */
+  }
+  
+  .option:hover {
+    background-color: #f0f0f0;
+    color: #0078d4;
+    box-shadow: 0 0 8px rgba(0, 120, 212, 0.4);
+  }
+  
+.spacing-between{
+    margin-right: 10px;
+}
+
+.dropdown-menu a.dropdown-item {
+    padding: 5px !important; /* Adjust padding as needed */
+    font-size: 14px !important; /* Adjust font size as needed */
+  }
