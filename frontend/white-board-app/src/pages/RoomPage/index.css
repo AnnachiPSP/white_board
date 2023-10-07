@@ -1,6 +1,4 @@
-/* roompage/index.css */
 
-/* Updated navbar styles */
 .navbar {
     background-color: #0078d4;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -21,15 +19,13 @@
     border-color: #fff;
   }
   
-  /* Updated board styles */
   .board-styles {
     position: relative;
     width: 100%;
-    height: calc(100vh - 56px); /* Adjust for the navbar height */
+    height: calc(100vh - 56px);
     overflow: hidden;
   }
   
-  /* Updated options container */
   .options-container {
     position: absolute;
     bottom: 12.5px;
@@ -47,18 +43,18 @@
   }
 
   .d-flex > .option {
-    margin-right: 10px; /* Reduce margin to bring icons closer */
+    margin-right: 10px;
   }
   
-  /* Updated option styles */
+
   .option {
     cursor: pointer;
-    padding: 10px; /* Increase padding for slightly bigger icons */
+    padding: 10px; 
     border-radius: 4px;
     transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
     background-color: #fff;
     color: #0078d4;
-    font-size: 18px; /* Increase font size for slightly bigger icons */
+    font-size: 18px; 
   }
   
   .option:hover {
@@ -71,22 +67,20 @@
     margin-right: 10px;
 }
 
-/* Add or adjust these CSS styles */
-
 .chat-room {
   position: absolute;
   top: 0;
-  width: 20%; /* 1/5th of the screen width */
+  width: 20%;
   height: 100%;
   background-color: #3787d7;
   color: white;
-  transition: left 0.3s ease-in-out; /* Apply a sliding transition */
-  z-index: 999; /* Ensure the chat room appears above other content */
+  transition: left 0.3s ease-in-out;
+  z-index: 999;
   padding: 20px;
 }
 
 .chat-room.open {
-  left: 0; /* Slide in when open */
+  left: 0;
 }
 
 .chat-container {
@@ -122,13 +116,13 @@
 
 
 .dropdown-menu a.dropdown-item {
-    padding: 5px !important; /* Adjust padding as needed */
-    font-size: 14px !important; /* Adjust font size as needed */
+    padding: 5px !important;
+    font-size: 14px !important;
   }
 
 @media (max-width: 768px) {
   .options-container {
-    flex-direction: column; /* Revert to row layout on smaller screens */
+    flex-direction: column;
     width: 60%;
   }
 }

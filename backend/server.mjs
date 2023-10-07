@@ -1,5 +1,4 @@
 import express from "express";
-import path from "path";
 import http from "http";
 import { Server } from "socket.io";
 import { addUser, removeUser, getUser, allUser} from "./utils/users.mjs";
@@ -7,8 +6,6 @@ import { addUser, removeUser, getUser, allUser} from "./utils/users.mjs";
 import authenticate from "./authenticate.mjs";
 
 let datas, roomIdGlobal, imgUrlGlobal;
-
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 const app = express();
 const server = http.createServer(app);
@@ -27,7 +24,6 @@ io.on("connection", (socket) => {
 
       console.log(`Joining User: ${userName}`);
       const userList = allUser();
-      console.log(userList);
 
       for(let i = 0; i < userList.length; i++){
         if(userList[i].roomId == roomId && userList[i].host){
@@ -49,6 +45,7 @@ io.on("connection", (socket) => {
     socket.broadcast.to(roomId).emit("whiteboardDataRes", {
       imgUrl: imgUrlGlobal,
     });
+
   });
 
   socket.on("whiteboardData", (data) => {
@@ -77,7 +74,7 @@ io.on("connection", (socket) => {
 
 });
 
-// Set EJS as the view engine and specify the views directory
+
 app.set("view engine", "ejs");
 
 app.get("/main",authenticate, (req, res) => {

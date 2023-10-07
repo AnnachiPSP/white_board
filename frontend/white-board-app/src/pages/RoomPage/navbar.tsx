@@ -70,7 +70,6 @@ const Navbar = ({ user, users, SaveToLocal, socket }) => {
         </div>
       </nav>
 
-      {/* ChatRoom component with sliding effect */}
       <ChatRoom openedChatTab={openedChatTab} setOpenedChatTab={setOpenedChatTab} socket={socket}/>
     </>
   );

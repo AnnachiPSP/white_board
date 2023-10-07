@@ -60,9 +60,7 @@ const ChatRoom = ({ openedChatTab, setOpenedChatTab, socket }) => {
         Close
       </button>
       <div className="chat-container">
-        {/* Chat Display Area */}
         <div className="chat-display">
-          {/* Example chat messages */}
           {
             chat.map((m, i) => (
                 <div key={i} className="chat-message">
@@ -71,10 +69,8 @@ const ChatRoom = ({ openedChatTab, setOpenedChatTab, socket }) => {
                 </div>
             ))
           }
-          {/* Add more chat messages here */}
         </div>
 
-        {/* Input Field and Send Button */}
         <div className="chat-input">
           <input type="text" placeholder="Enter a message" value={msg} onChange={(e) => setMsg(e.target.value)}/>
           <button type="button" onClick={handleMessage}>Enter</button>

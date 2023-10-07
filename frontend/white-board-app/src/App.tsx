@@ -9,6 +9,7 @@ import Authenticate from './components/Forms/login_page';
 import io from "socket.io-client";
 import { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
+import {v4 as uuidv4} from "uuid";
 
 const server = "http://localhost:5000";
 const connectionOptions = {
@@ -53,23 +54,8 @@ const App = () => {
   }, []);
 
   const uuid = () => {
-    let S4 = () => {
-      return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
-    };
-    return (
-      S4() +
-      S4() +
-      '-' +
-      S4() +
-      '-' +
-      S4() +
-      '-' +
-      S4() +
-      '-' +
-      S4() +
-      S4() +
-      S4()
-    );
+    const generatedUuid = uuidv4();
+    return generatedUuid;
   };
 
   const [isLoggedIn, token] = useAuth();
