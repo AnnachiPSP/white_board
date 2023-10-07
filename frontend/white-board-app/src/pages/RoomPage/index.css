@@ -5,6 +5,12 @@
     background-color: #0078d4;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
+
+.user-online{
+  text-align: center !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
   
   .navbar-brand {
     font-family: "Segoe UI", sans-serif;
@@ -33,9 +39,11 @@
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     display: flex;
+    flex-direction: row;
+    align-items: center;
     justify-content: space-between;
     padding: 5px;
-    width: 60%;
+    width: 90%;
   }
 
   .d-flex > .option {
@@ -63,7 +71,64 @@
     margin-right: 10px;
 }
 
+/* Add or adjust these CSS styles */
+
+.chat-room {
+  position: absolute;
+  top: 0;
+  width: 20%; /* 1/5th of the screen width */
+  height: 100%;
+  background-color: #3787d7;
+  color: white;
+  transition: left 0.3s ease-in-out; /* Apply a sliding transition */
+  z-index: 999; /* Ensure the chat room appears above other content */
+  padding: 20px;
+}
+
+.chat-room.open {
+  left: 0; /* Slide in when open */
+}
+
+.chat-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-right: 10px;
+}
+
+.chat-display {
+  flex: 3;
+  overflow-y: auto;
+}
+
+.chat-input {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 5px;
+  margin-right: 10px;
+}
+
+.chat-input button {
+  padding: 5px 10px;
+}
+
+
+
 .dropdown-menu a.dropdown-item {
     padding: 5px !important; /* Adjust padding as needed */
     font-size: 14px !important; /* Adjust font size as needed */
   }
+
+@media (max-width: 768px) {
+  .options-container {
+    flex-direction: column; /* Revert to row layout on smaller screens */
+    width: 60%;
+  }
+}

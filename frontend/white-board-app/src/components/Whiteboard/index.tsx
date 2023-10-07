@@ -3,14 +3,33 @@ import rough from "roughjs";
 
 const roughGenerator = rough.generator();
 
-const WhiteBoard = ({ canvasRef, ctxRef, elements, setElements, tool, color, brush, addToHistory}) => {
+const WhiteBoard = ({ canvasRef, ctxRef, elements, setElements, tool, color, brush, addToHistory, user, socket}) => {
+
+  const [image, setImage] = useState(null);
+
+  useEffect(() => {
+    socket.on("whiteboardDataRes", (data) => {
+      setImage(data.imgUrl);
+    })
+  }, []);
+
+  if(!user?.host){
+    return(
+      <div className='h-100 w-100 overflow-hidden'>
+        <img src={image} alt="Host Sharing!!" style={{
+          height: window.innerHeight*2,
+          width: "200%"
+        }}/>
+      </div>
+    )
+  }
 
   const [drawing, setDrawing] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    canvas.height = window.innerHeight;
-    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight*2;
+    canvas.width = window.innerWidth*2;
     const ctx = canvas.getContext("2d");
     
     ctx.strokeStyle = color;
@@ -25,35 +44,42 @@ const WhiteBoard = ({ canvasRef, ctxRef, elements, setElements, tool, color, bru
   }, [color, brush]);
 
   useLayoutEffect(() => {
-    const roughCanvas = rough.canvas(canvasRef.current);
 
-    if(elements.length > 0){
-      ctxRef.current.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+    if(canvasRef){
+      const roughCanvas = rough.canvas(canvasRef.current);
+
+      if(elements.length > 0){
+        ctxRef.current.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+      }
+  
+      elements.forEach((element) => {
+        if(element.type === "pencil") roughCanvas.linearPath(element.path, { stroke: element.stroke, strokeWidth: element.brushSize, roughness: 0 });
+        else if(element.type === "line"){
+          roughCanvas.draw(
+            roughGenerator.line(element.startX, element.startY, element.endX, element.endY, { stroke: element.stroke, strokeWidth: element.brushSize, roughness: 0 })
+          );
+        }
+        else if(element.type === "rect"){
+          roughCanvas.draw(
+            roughGenerator.rectangle(element.startX, element.startY, element.endX, element.endY, { stroke: element.stroke, strokeWidth: element.brushSize, roughness: 0 })
+          );
+        }
+        else if(element.type === "circle"){
+          roughCanvas.draw(
+            roughGenerator.circle(element.centerX, element.centerY, element.radius, { stroke: element.stroke, strokeWidth: element.brushSize, roughness: 0 })
+          );
+        }
+        else if(element.type === "ellipse"){
+          roughCanvas.draw(
+            roughGenerator.ellipse(element.centerX, element.centerY, element.width, element.height, { stroke: element.stroke, strokeWidth: element.brushSize, roughness: 0 })
+          );
+        }
+      });
+
+      const canvasImg = canvasRef.current.toDataURL();
+      socket.emit("whiteboardData", canvasImg);
     }
 
-    elements.forEach((element) => {
-      if(element.type === "pencil") roughCanvas.linearPath(element.path, { stroke: element.stroke, strokeWidth: element.brushSize, roughness: 0 });
-      else if(element.type === "line"){
-        roughCanvas.draw(
-          roughGenerator.line(element.startX, element.startY, element.endX, element.endY, { stroke: element.stroke, strokeWidth: element.brushSize, roughness: 0 })
-        );
-      }
-      else if(element.type === "rect"){
-        roughCanvas.draw(
-          roughGenerator.rectangle(element.startX, element.startY, element.endX, element.endY, { stroke: element.stroke, strokeWidth: element.brushSize, roughness: 0 })
-        );
-      }
-      else if(element.type === "circle"){
-        roughCanvas.draw(
-          roughGenerator.circle(element.centerX, element.centerY, element.radius, { stroke: element.stroke, strokeWidth: element.brushSize, roughness: 0 })
-        );
-      }
-      else if(element.type === "ellipse"){
-        roughCanvas.draw(
-          roughGenerator.ellipse(element.centerX, element.centerY, element.width, element.height, { stroke: element.stroke, strokeWidth: element.brushSize, roughness: 0 })
-        );
-      }
-    });
   }, [elements]);
 
   const handleMouseDown = (e) => {

@@ -1,20 +1,25 @@
 import jwtmod from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
 
 export default async (req, res, next) => {
     const bearerHeader = req.headers["authorization"];
     const token = bearerHeader && bearerHeader.split(" ")[1];
     if (token == null) {
-      req.isAuthenticated = false; // Set a flag to indicate authentication failure
+      req.isAuthenticated = false;
     } else {
-      req.isAuthenticated = true; // Set a flag to indicate authentication success
-      req.token = token; // Store the token for later use if needed
+      req.isAuthenticated = true;
+      req.token = token;
     }
 
     const public_key = `-----BEGIN PUBLIC KEY-----\n${process.env.PUBLICKEY}\n-----END PUBLIC KEY-----`;
     const decodedToken = jwtmod.verify(token, public_key, {
         algorithms: ["RS256"],
     });
-    console.log(decodedToken);
-    next(); // Continue to the next middleware or route handler
+
+    const { preferred_username } = decodedToken;
+    req.user_name = preferred_username;
+
+    next();
   };
 
