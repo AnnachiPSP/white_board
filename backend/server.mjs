@@ -22,14 +22,11 @@ io.on("connection", (socket) => {
 
     if(host == false){
 
-      console.log(`Joining User: ${userName}`);
       const userList = allUser();
 
       for(let i = 0; i < userList.length; i++){
         if(userList[i].roomId == roomId && userList[i].host){
-          console.log(`RoomName before change: ${roomName}`);
           roomName = userList[i].roomName;
-          console.log(`RoomName after changing: ${roomName}`);
         }
       }
 

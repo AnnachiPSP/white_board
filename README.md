@@ -23,29 +23,9 @@
 
 - **Real-time Drawing**: Users can draw on a shared canvas in real-time, making it ideal for collaborative brainstorming and sketching.
 
+- **Real-time ChatRoom**: Users cn chat among theselves by clicking on the button" ChatRoom".
+
 - **Authentication**: The application uses Keycloak for user authentication, ensuring secure access to rooms.
-
-### Known Issues
-
-- **Data Persistence**: Data is currently stored locally, which means that a page refresh will result in the loss of drawings and room information.
-
-- **Responsiveness**: The application's responsiveness can be improved for a better user experience on various devices and screen sizes.
-
-- **"Save Canvas"**: Saving the canvas is not functioning as expected for non-hosts.
-
-- **Database Backend**: Implementing a database backend is necessary for storing room states and chat history to enable data persistence.
-
-- **Non-Host Drawing**: Non-host users should be able to draw and access drawing functionalities.
-
-- **Zoom In-Out**: Implement zoom functionality to enhance the drawing experience.
-
-- **Copy Button**: The copy button does not work as expected, and there are performance issues related to callbacks and rerendering.
-
-### Planned Improvements
-
-- **Recording**: Add the ability to record video and audio of the drawing session.
-
-- **Erasing**: Implement an eraser feature for users to correct mistakes easily.
 
 ## 3. Tech Stack
 
@@ -143,3 +123,38 @@ Here are some future improvements that can be made to enhance the Whiteboard Int
 
 Contributions to the Whiteboard Interaction project are welcome! Feel free to analyze the code, submit bug reports, and propose new features or improvements. Follow the guidelines provided in the project's documentation for contributing.
 
+## 8. Screenshots
+
+Here are some screenshots on how the UI looks explaining how the white-board app works!!
+
+- Authentication page
+
+![split screen view of registering as host and common user](./screenshots/sc-1.png)
+
+- User Session displayed in keycloak console
+
+![Key Cloak Console](./screenshots/sc-1a.png)
+
+- The page that arrives once you authenticates
+
+![User page](./screenshots/sc-2.png)
+
+- The page that appears once "Create Room" is clicked!
+
+![Create Room Page](./screenshots/sc-3.png)
+
+- The page that appears once "Join Room" is clicked!
+
+![Join Room Page](./screenshots/sc-4.png)
+
+- Split screen view of a host and a non-host in the same room!
+
+![white board split screen](./screenshots/sc-5.png)
+
+- Full-screen mode of a non-host user including the Chat Room preview!
+
+![non-host user screen](./screenshots/sc-6.png)
+
+- Full-screen mode of a host user including the Chat Room preview!
+
+![host user screen](./screenshots/sc-7.png)
